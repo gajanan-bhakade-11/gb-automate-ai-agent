@@ -14,11 +14,18 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const allowedOrigins = new Set([
+  process.env.CLIENT_URL || "http://localhost:5173",
+  "http://localhost:5173",
+  "https://gb-automate-ai-agent-client.onrender.com",
+]);
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "https://gb-automate-ai-agent-client.onrender.com",
-    credentials:true
+    origin(origin, callback) {
+      callback(null, !origin || allowedOrigins.has(origin));
+    },
+    credentials: true,
   })
 );
 app.use(express.json());
