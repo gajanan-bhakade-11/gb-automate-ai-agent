@@ -7,16 +7,18 @@ const serviceAccountJson =
   (existsSync(serviceAccountPath)
     ? readFileSync(serviceAccountPath, "utf8").trim()
     : "");
+const serviceAccount = serviceAccountJson
+  ? JSON.parse(serviceAccountJson)
+  : null;
 
 if (serviceAccountJson) {
-  const serviceAccount = JSON.parse(serviceAccountJson);
   if (!serviceAccount.project_id || !serviceAccount.private_key) {
     throw new Error("Firebase Admin service-account JSON is missing required fields.");
   }
 }
 
-export const app = serviceAccountJson
-  ? initializeApp({ credential: cert(JSON.parse(serviceAccountJson)) })
+export const app = serviceAccount
+  ? initializeApp({ credential: cert(serviceAccount) })
   : initializeApp();
 
 if (!serviceAccountJson) {
