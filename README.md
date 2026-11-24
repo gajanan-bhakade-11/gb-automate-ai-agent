@@ -30,16 +30,15 @@ The frontend is served at `http://localhost:5173`; the API defaults to `http://l
 
 ## Deployment
 
-Deployment configuration is included for a Vercel frontend and Render API:
+Deployment configuration is included for both the frontend and API on Render:
 
-- Deploy `frontend/` as a Vercel Vite project (`npm run build`, output directory `dist`).
-- Deploy the root `render.yaml` blueprint to create the Render API service.
-- Set the Render `CLIENT_URL` and `FRONTEND_URL` to the deployed Vercel origin.
-- Set Vercel `VITE_SERVER_URL` to the Render API origin, and set the Firebase web key and Cloudinary values.
+- Deploy the root `render.yaml` blueprint to create the Render API and static frontend.
+- Set the API `CLIENT_URL` and `FRONTEND_URL` to the static site's Render origin.
+- Set the frontend `VITE_SERVER_URL` to the API's Render origin, along with the Firebase web key and Cloudinary values.
 - Add the Firebase Admin service-account JSON to Render as `FIREBASE_SERVICE_ACCOUNT_JSON`. Never commit service-account files or `.env` files.
-- Add the deployed API callback URLs to Google OAuth and Instagram provider settings, and add the Vercel hostname to Firebase Authentication's authorized domains.
+- Add the deployed API callback URLs to Google OAuth and Instagram provider settings, and add the Render frontend hostname to Firebase Authentication's authorized domains.
 
-Render's blueprint prompts for required server-side credentials. Payment, OAuth, and AI integrations require their corresponding provider credentials to be configured before those features can be used.
+Render's blueprint prompts for required environment values. Payment, OAuth, and AI integrations require their corresponding provider credentials to be configured before those features can be used.
 
 ## Environment variables
 
