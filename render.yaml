@@ -15,9 +15,9 @@ services:
       - key: BRAND_NAME
         value: GB AUTOMATE AI
       - key: CLIENT_URL
-        sync: false
+        value: https://gajanan-bhakade-11.github.io
       - key: FRONTEND_URL
-        sync: false
+        value: https://gajanan-bhakade-11.github.io/gb-automate-ai-agent
       - key: API_BASE_URL
         sync: false
       - key: MONGODB_URI
@@ -53,27 +53,4 @@ services:
       - key: RAZORPAY_KEY_SECRET
         sync: false
       - key: SUPPORT_EMAIL
-        value: gajananbhakade1@gmail.com
-  - type: web
-    name: gb-automate-ai-web
-    runtime: static
-    rootDir: frontend
-    buildCommand: npm ci && npm run build
-    staticPublishPath: dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: VITE_SERVER_URL
-        sync: false
-      - key: VITE_FIREBASE_API_KEY
-        sync: false
-      - key: VITE_CLOUDINARY_CLOUD_NAME
-        sync: false
-      - key: VITE_CLOUDINARY_UPLOAD_PRESET
-        sync: false
-      - key: VITE_BRAND_NAME
-        value: GB AUTOMATE AI
-      - key: VITE_SUPPORT_EMAIL
         value: gajananbhakade1@gmail.com

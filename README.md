@@ -30,15 +30,15 @@ The frontend is served at `http://localhost:5173`; the API defaults to `http://l
 
 ## Deployment
 
-Deployment configuration is included for both the frontend and API on Render:
+The frontend is deployed to GitHub Pages and the API runs on Render:
 
-- Deploy the root `render.yaml` blueprint to create the Render API and static frontend.
-- Set the API `CLIENT_URL` and `FRONTEND_URL` to the static site's Render origin.
-- Set the frontend `VITE_SERVER_URL` to the API's Render origin, along with the Firebase web key and Cloudinary values.
-- Add the Firebase Admin service-account JSON to Render as `FIREBASE_SERVICE_ACCOUNT_JSON`. Never commit service-account files or `.env` files.
-- Add the deployed API callback URLs to Google OAuth and Instagram provider settings, and add the Render frontend hostname to Firebase Authentication's authorized domains.
+- Enable GitHub Pages for the repository with **GitHub Actions** as the build and deployment source. The workflow at `.github/workflows/deploy-pages.yml` publishes the frontend on pushes to `main`.
+- Add these repository Actions variables under **Settings → Secrets and variables → Actions → Variables**: `VITE_FIREBASE_API_KEY`, `VITE_CLOUDINARY_CLOUD_NAME`, `VITE_CLOUDINARY_UPLOAD_PRESET`, and `VITE_SUPPORT_EMAIL`. Set `VITE_SERVER_URL` if the Render API uses a URL other than `https://gb-automate-ai-api.onrender.com`.
+- Deploy `render.yaml` to create the Render API. Set its MongoDB, Firebase Admin, JWT, and provider credentials in Render's environment settings; never commit service-account files or `.env` files.
+- The API's `CLIENT_URL` and `FRONTEND_URL` are configured for `https://gajanan-bhakade-11.github.io` and `https://gajanan-bhakade-11.github.io/gb-automate-ai-agent`. Update them if the repository owner or name changes.
+- Add the GitHub Pages hostname to Firebase Authentication's authorized domains and configure external OAuth callback URLs to use the Render API.
 
-Render's blueprint prompts for required environment values. Payment, OAuth, and AI integrations require their corresponding provider credentials to be configured before those features can be used.
+The Render blueprint prompts for required environment values. Payment, OAuth, and AI integrations require their corresponding provider credentials to be configured before those features can be used.
 
 ## Environment variables
 

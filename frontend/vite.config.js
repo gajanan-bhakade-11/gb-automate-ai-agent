@@ -8,6 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS
+    ? "/gb-automate-ai-agent/"
+    : "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

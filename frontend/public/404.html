@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <script>
+      const basePath = "/gb-automate-ai-agent/";
+      const route = window.location.pathname.startsWith(basePath)
+        ? window.location.pathname.slice(basePath.length - 1) || "/"
+        : "/";
+      const query = window.location.search
+        ? `&q=${encodeURIComponent(window.location.search.slice(1))}`
+        : "";
+
+      window.location.replace(
+        `${basePath}?p=${encodeURIComponent(route)}${query}${window.location.hash}`
+      );
+    </script>
+  </body>
+</html>
